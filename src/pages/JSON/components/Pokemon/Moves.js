@@ -8,6 +8,9 @@ const Moves = ({ foundMoves }) => {
         a.level_learned_at - b.level_learned_at ||
         a.move_learn_method.localeCompare(b.move_learn_method)
       );
+      // if (a.level_learned_at === b. level_learned_at||a.move_learn_method == b.move_learn_method){
+      //   a.moves.move.name - b.moves.move.name
+      // }
     });
   }
 
