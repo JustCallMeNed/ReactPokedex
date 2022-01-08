@@ -1,6 +1,16 @@
 import { capFirst } from "./Pokemon";
 const Moves = ({ foundMoves }) => {
   let { order, moves, abilities } = foundMoves;
+  // Sorting = processing data twice - once to sort, once to return
+  function sortMoves() {
+    moves.sort(function (a, b) {
+      return (
+        a.level_learned_at - b.level_learned_at ||
+        a.move_learn_method.localeCompare(b.move_learn_method)
+      );
+    });
+  }
+
   return (
     <div id="moveScreen">
       <div>
