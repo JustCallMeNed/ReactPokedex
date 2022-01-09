@@ -1,6 +1,8 @@
 import "./Pokemon.css";
 import Stats from "./Stats";
+import Abilities from "./Abilities";
 import Moves from "./Moves";
+import Evos from "./Evos";
 
 export function capFirst(foundPokemon) {
   // console.log(foundPokemon.split("-"));
@@ -62,8 +64,8 @@ const Pokemon = ({ foundPokemon }) => {
         </div>
       </div>
 
-      <div>
-        <h1 className="Species">
+      <div id="nameHeader">
+        <h1 id="Species">
           {species.name === "farfetchd"
             ? "Farfetch'd"
             : species.name === "mr-mime"
@@ -110,7 +112,9 @@ const Pokemon = ({ foundPokemon }) => {
         {/* base values for height/weight are given in decimeters/hectograms... for SOME reason. */}
       </div>
       <div id="dataDisplay">
+        <Abilities foundAbilities={foundPokemon} />
         <Stats foundStats={foundPokemon} />
+        {/* <Evos foundEvos={foundPokemon} /> */}
         <Moves foundMoves={foundPokemon} />
         {/* {stats.map((stat, i) => {
           return (

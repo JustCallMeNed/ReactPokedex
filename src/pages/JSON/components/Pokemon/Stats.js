@@ -10,7 +10,7 @@ const Stats = ({ foundStats }) => {
           {stats.map((stat, i) => {
             return stat.stat.name === "special-attack" ||
               stat.stat.name === "special-defense" ? (
-              <p key={i} class="baseStats" id={"Stat" + i}>
+              <p key={i} className="baseStats" id={"Stat" + i}>
                 {capFirst(
                   stat.stat.name === "special-attack"
                     ? "sp.-attack"
@@ -19,7 +19,7 @@ const Stats = ({ foundStats }) => {
                 : {stat.base_stat}
               </p>
             ) : (
-              <p key={i} class="baseStats" id={"Stat" + i}>
+              <p key={i} className="baseStats" id={"Stat" + i}>
                 {capFirst(stat.stat.name)}: {stat.base_stat}
               </p>
             );

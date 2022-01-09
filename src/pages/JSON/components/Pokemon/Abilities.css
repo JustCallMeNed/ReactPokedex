@@ -1,0 +1,10 @@
+#abilityScreen {
+  margin: auto;
+  width: fit-content;
+  text-align: center;
+}
+
+#hiddenAbility {
+  font-size: auto;
+  color: rgb(161, 137, 0);
+}

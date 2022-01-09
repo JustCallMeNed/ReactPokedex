@@ -100,15 +100,15 @@ const JSON = () => {
           </button>
           <input
             type="button"
-            class="checkBtn"
+            className="checkBtn"
             id="FormeBtn"
             // onClick={(e) => {
             //   dexLoad.play(e);
             // }}
           />
-          <input type="button" class="checkBtn" id="ArtBtn" />
-          <input type="button" class="checkBtn" id="check03" />
-          <input type="button" class="checkBtn" id="check04" />
+          <input type="button" className="checkBtn" id="ArtBtn" />
+          <input type="button" className="checkBtn" id="check03" />
+          <input type="button" className="checkBtn" id="check04" />
           <div id="speaker">
             <hr />
             <hr />
@@ -160,7 +160,6 @@ const JSON = () => {
         >
           {}
         </input> */}
-
           {Object.keys(apiJson).length !== 0 ? null : (
             <div id="mainScreenEmpty" />
           )}
@@ -174,23 +173,23 @@ const JSON = () => {
           <div>
             <h2>Pine Labs</h2>
             <hr />
-            {/* <input type="button" class="checkBtn" id="check01" />
-        <input type="button" class="checkBtn" id="check02" /> */}
+            {/* <input type="button" className="checkBtn" id="check01" />
+        <input type="button" className="checkBtn" id="check02" /> */}
           </div>
           <div id="dPad">
-            <button class="dPadBtn" id="dPad01">
+            <button className="dPadBtn" id="dPad01">
               ^
             </button>
-            <button class="dPadBtn" id="dPad02">
+            <button className="dPadBtn" id="dPad02">
               v
             </button>
-            <button class="dPadBtn" id="dPad03">
+            <button className="dPadBtn" id="dPad03">
               {"<"}
             </button>
-            <button class="dPadBtn" id="dPad04">
+            <button className="dPadBtn" id="dPad04">
               {">"}
             </button>
-            <button class="dPadBtn" id="dPad05"></button>
+            <button className="dPadBtn" id="dPad05"></button>
           </div>
         </div>
       </div>

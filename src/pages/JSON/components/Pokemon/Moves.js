@@ -2,17 +2,62 @@ import { capFirst } from "./Pokemon";
 const Moves = ({ foundMoves }) => {
   let { order, moves, abilities } = foundMoves;
   // Sorting = processing data twice - once to sort, once to return
-  function sortMoves() {
-    moves.sort(function (a, b) {
-      return (
-        a.level_learned_at - b.level_learned_at ||
-        a.move_learn_method.localeCompare(b.move_learn_method)
-      );
-      // if (a.level_learned_at === b. level_learned_at||a.move_learn_method == b.move_learn_method){
-      //   a.moves.move.name - b.moves.move.name
-      // }
-    });
-  }
+
+  // function filterMoves() {
+  //   moves.filter(() => {
+  //     let levelMoves = [];
+  //     let tutorMoves = [];
+  //     let eggMoves = [];
+  //     let machineMoves = [];
+  //     moves.filter(function (move) {
+  //       if (
+  //         Object.keys(moves?.version_group_details?.move_learn_method.name) ===
+  //         "level-up"
+  //       ) {
+  //         levelMoves.push(move);
+  //       } else if (
+  //         Object.keys(moves?.version_group_details?.move_learn_method.name) ===
+  //         "tutor"
+  //       ) {
+  //         tutorMoves.push(move);
+  //       } else if (
+  //         Object.keys(moves?.version_group_details?.move_learn_method.name) ===
+  //         "egg"
+  //       ) {
+  //         eggMoves.push(move);
+  //       } else if (
+  //         Object.keys(moves?.version_group_details?.move_learn_method.name) ===
+  //         "machine"
+  //       ) {
+  //         machineMoves.push(move);
+  //       }
+  //       return levelMoves, tutorMoves, eggMoves, machineMoves;
+  //     });
+  //   });
+  // }
+  // function sortMoves() {
+  //   moves.sort(function (a, b) {
+  //     if (a.level_learned_at === b.level_learned_at) {
+  //       a.moves.move.name - b.moves.move.name;
+  //     } else {
+  //       return a.level_learned_at - b.level_learned_at;
+  //     }
+  //   });
+  // }
+
+  // if (a?.move_learn_method && b?.move_learn_method) {
+  //   return a?.move_learn_method.localeCompare(b?.move_learn_method);
+  //   // if (a.level_learned_at === b. level_learned_at||a.move_learn_method == b.move_learn_method){
+  //   //   a.moves.move.name - b.moves.move.name
+  //   // }
+  // } else {
+  //   return a.level_learned_at - b.level_learned_at;
+  // }
+
+  // filterMoves();
+  // console.log(moves);
+  // sortMoves();
+  // console.log(moves);
 
   return (
     <div id="moveScreen">
@@ -30,7 +75,6 @@ const Moves = ({ foundMoves }) => {
                       moves.version_group_details[0].move_learn_method.name
                     )
                   : moves.version_group_details[0].level_learned_at}
-                {/* lorem ipsum */}
               </p>
             </>
           );
