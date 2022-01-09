@@ -1,0 +1,24 @@
+#statsScreen {
+  margin: 1em;
+  padding-bottom: 0.6em;
+  border-top: dotted teal 0.6em;
+  border-bottom: dotted teal 0.6em;
+}
+
+#statsHeader {
+  display: flex;
+  justify-content: center;
+}
+#statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-size: 0.75em;
+}
+
+.baseStats {
+  display: inline-table;
+  margin: 0.3em;
+  justify-items: center;
+  white-space: nowrap;
+  text-align: left;
+}
