@@ -24,13 +24,13 @@
   padding: 1em;
 }
 
-#nameHeader {
-  /* background-image: url(../../../../assets/pokeball-svg.png);
+/* #nameHeader {
+  background-image: url(../../../../assets/pokeball-svg.png);
   background-size: 90%;
   background-repeat: no-repeat no-repeat;
   background-position: center;
-  opacity: 30%; */
-}
+  opacity: 30%;
+} */
 #Species {
   opacity: initial;
   font-family: Eviolite;
