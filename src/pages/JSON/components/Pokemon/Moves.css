@@ -5,6 +5,14 @@
   margin: 0;
 }
 
+#errorMessage {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border-top: solid 1em lightsalmon;
+  border-bottom: solid 1em lightsalmon;
+}
+
 .Moves {
   display: flex;
   justify-content: center;

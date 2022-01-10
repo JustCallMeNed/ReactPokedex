@@ -63,22 +63,29 @@ const Moves = ({ foundMoves }) => {
     <div id="moveScreen">
       <div>
         <h3 class="Moves">Moves</h3>
-        {moves.map((moves, i) => {
-          return (
-            //dropdown menu to subdivide/organize moves by type (damaging/status, etc)
-            <>
-              <p key={i} class="Moves" id={"Move" + i}>
-                {capFirst(moves.move.name)}
-                {" - "}
-                {moves.version_group_details[0].level_learned_at === 0
-                  ? capFirst(
-                      moves.version_group_details[0].move_learn_method.name
-                    )
-                  : moves.version_group_details[0].level_learned_at}
-              </p>
-            </>
-          );
-        })}
+        {moves.length === 0 ? (
+          <p id="errorMessage">
+            Error: This Moves list is currently unavailable -- we apologize for
+            the inconvenience.
+          </p>
+        ) : (
+          moves.map((moves, i) => {
+            return (
+              //dropdown menu to subdivide/organize moves by type (damaging/status, etc)
+              <>
+                <p key={i} class="Moves" id={"Move" + i}>
+                  {capFirst(moves.move.name)}
+                  {" - "}
+                  {moves.version_group_details[0].level_learned_at === 0
+                    ? capFirst(
+                        moves.version_group_details[0].move_learn_method.name
+                      )
+                    : moves.version_group_details[0].level_learned_at}
+                </p>
+              </>
+            );
+          })
+        )}
       </div>
     </div>
   );

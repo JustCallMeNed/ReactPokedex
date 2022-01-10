@@ -1,3 +1,9 @@
+.js-loading *,
+.js-loading *:before,
+.js-loading *:after {
+  animation-play-state: paused !important;
+}
+
 @font-face {
   font-family: Eviolite;
   src: url(../../../../assets/EvioliteBRegular-Oj0P.ttf);
@@ -5,6 +11,39 @@
 @font-face {
   font-family: PokemonGB;
   src: url(../../../../assets/PokemonGb-RAeo.ttf);
+}
+
+@font-face {
+  font-family: Unovian;
+  src: url(../../../../assets/Pokemon_Unovian_Regular.ttf);
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: inherit;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
 }
 
 #Border {
@@ -129,14 +168,21 @@ input {
 
 #mainHeader {
   font-family: Eviolite;
+  /* font-family: Unovian; */
+  font-weight: 100;
   display: flex;
   justify-self: center;
   align-items: center;
   text-align: center;
-  margin: 0;
+  margin: 0 auto;
   height: 3em;
   color: rgb(153, 252, 255);
   text-shadow: 0em 0em 1em rgb(188, 253, 255);
+  overflow: hidden;
+  border-right: 0.15em solid inherit;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  /* animation: typing 1.5s steps(30, end), blink-caret 0.75s step-end infinite; */
 }
 
 #mainScreenEmpty {
@@ -159,6 +205,7 @@ input {
     rgb(188, 242, 255),
     rgb(92, 250, 255)
   );
+  animation: fade 0.5s steps(20, end);
 }
 
 /* #searchLabel {
@@ -170,6 +217,7 @@ input {
 #searchBtn {
   font-family: Eviolite;
   font-size: large;
+  font-weight: 900;
   color: rgb(253, 183, 183);
   background-color: rgb(139, 0, 0);
   border-radius: 3em;
