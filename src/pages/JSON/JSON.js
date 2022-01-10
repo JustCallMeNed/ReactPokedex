@@ -13,6 +13,33 @@ const typeSound = new Howl({
   volume: 0.8,
 });
 
+// function searchDefaults(dexEntry) {
+//   let detail = dexEntry;
+//   if (Object.keys(apiJson).name.split("-")[0] === detail.trim().toLowerCase()) {
+//     return true;
+//   }
+// console.log(detail.split("-")[0].toLowerCase());
+// console.log(Object.keys(apiJson).name.split("-")[0]);
+// }
+//^ Return first word of string separated by hyphens in search bar
+// create array of returns whose first word matches search bar
+// search "aegislash", receive both "aegislash-shield" and "aegislash-blade"
+// use return with lowest 'id' key value/ 'is_default' key of 'true' for display
+
+// function searchFirst(foundPokemon) {
+//   foundPokemon.findKey(obj, function (key) {
+//     return _.startsWith(key, { $dexEntry });
+//   });
+//
+// let entries = foundPokemon.split("-");
+// let splitEntries = [];
+// for (let entry of entries) {
+//   let splitEntry = entry;
+//   splitEntries.push(entry);
+// }
+// return splitEntries[0];
+// }
+
 const JSON = () => {
   const [apiJson, setApiJson] = useState({});
   const [dexEntry, setDexEntry] = useState("");
@@ -28,8 +55,10 @@ const JSON = () => {
   useEffect(() => {
     const getJSON = async () => {
       const jsonData = await axios.get(
+        // `https://pokeapi.co/api/v2/pokemon/${dexEntry.trim().toLowerCase()}`
         `https://pokeapi.co/api/v2/pokemon/${dexEntry.trim().toLowerCase()}`
       );
+
       console.log(jsonData.data);
       setApiJson(jsonData.data);
     };
@@ -37,10 +66,34 @@ const JSON = () => {
       return null;
     } else {
       getJSON();
-      dexLoad.play();
+      // dexLoad.play();
     }
   }, [submit]);
   // console.log(apiJson.data);
+
+  useEffect(() => {
+    const getFlavorJSON = async () => {
+      const jsonFlavorData = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon-species/${dexEntry
+          .trim()
+          .toLowerCase()}`
+      );
+
+      // console.log(jsonFlavorData.data);
+      setApiJson(jsonFlavorData.data);
+    };
+    if (dexEntry.trim() === "") {
+      return null;
+    } else {
+      getFlavorJSON();
+      // dexLoad.play();
+    }
+    console.log(jsonFlavorData.data);
+  }, [submit]);
+  // const jsonFlavor = await axios.get(
+  //   `https://pokeapi.co/api/v2/pokemon-species/${searchDefaults(dexEntry)}`
+  // );
+  // // consider multiple API calls
 
   // VVV RANDOM BUTTON CODE
   function getRandom() {

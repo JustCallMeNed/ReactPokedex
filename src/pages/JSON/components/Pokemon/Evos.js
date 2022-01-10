@@ -1,10 +1,10 @@
 const Evos = ({ foundEvos }) => {
-  let { id } = foundEvos;
+  let { id, species } = foundEvos;
 
   useEffect(() => {
     const getJSON = async () => {
       const jsonData = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon-species/${id}`
+        `https://pokeapi.co/api/v2/pokemon-species/${species[0]}`
       );
       console.log(jsonData.data);
       setApiJson(jsonData.data);
