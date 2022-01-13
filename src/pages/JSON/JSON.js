@@ -42,6 +42,7 @@ const typeSound = new Howl({
 
 const JSON = () => {
   const [apiJson, setApiJson] = useState({});
+  const [flavorJson, setFlavorJson] = useState({});
   const [dexEntry, setDexEntry] = useState("");
   const [submit, setSubmit] = useState(false);
   const [randomSubmit, setRandomSubmit] = useState(false);
@@ -71,25 +72,6 @@ const JSON = () => {
   }, [submit]);
   // console.log(apiJson.data);
 
-  useEffect(() => {
-    const getFlavorJSON = async () => {
-      const jsonFlavorData = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon-species/${dexEntry
-          .trim()
-          .toLowerCase()}`
-      );
-
-      // console.log(jsonFlavorData.data);
-      setApiJson(jsonFlavorData.data);
-    };
-    if (dexEntry.trim() === "") {
-      return null;
-    } else {
-      getFlavorJSON();
-      // dexLoad.play();
-    }
-    console.log(jsonFlavorData.data);
-  }, [submit]);
   // const jsonFlavor = await axios.get(
   //   `https://pokeapi.co/api/v2/pokemon-species/${searchDefaults(dexEntry)}`
   // );
@@ -103,17 +85,29 @@ const JSON = () => {
   }
   useEffect(() => {
     const getJSON = async () => {
-      const jsonData = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${getRandom()}`
-      );
-      console.log(randomSubmit);
-      console.log(jsonData.data);
-      setApiJson(jsonData.data);
+      await axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${getRandom()}`)
+        .then(async (firstRes) => {
+          await axios
+            .get(
+              `https://pokeapi.co/api/v2/pokemon-species/${firstRes.data.name
+                .trim()
+                .toLowerCase()}`
+            )
+            .then((secondRes) => {
+              setApiJson(firstRes.data);
+              setFlavorJson(secondRes.data);
+            });
+
+          console.log(apiJson);
+          console.log(flavorJson);
+        });
     };
+
     if (randomSubmit === false) {
       return null;
     } else if (dexEntry !== "" && randomSubmit === true) {
-      getJSON();
+      setApiJson(getJSON());
     } else {
       getJSON();
     }

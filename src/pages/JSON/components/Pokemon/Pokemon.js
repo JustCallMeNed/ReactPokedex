@@ -40,24 +40,23 @@ function hpCaps(entry) {
   return cappedEntry;
 }
 //^^^ Capitalizes "HP" when rendering stat names with loop
+
+// function funnyNames
+
 const Pokemon = ({ foundPokemon }) => {
-  // console.log(foundPokemon);
   let { sprites, id, order, types, species, height, weight, forms } =
     foundPokemon;
   // NOTE: moves, stats, types, abilities are arrays of objects;
   // generate html tags with the selected data
 
-  //   let {base_stat, stat, name} = stats
-  // }
   let originalArtworkSource = sprites.other["official-artwork"].front_default;
-  // console.log("Original Art Src:" + " " + originalArtworkSource);
   return (
     <div id="dataContainer">
       <div id="spriteDisplay">
         <img id="mainArt" src={originalArtworkSource} />
         {/* <img id="mainArt" src={sprites.other.home.front_default} /> */}
         {/* <hr /> */}
-        {/* <input type="radio" onChange={}>Gender</input> */}
+        {/* Gender/Sex component goes here. Get your head out of the gutter. */}
         <div id="spriteArt">
           <img id="Default" src={sprites.front_default} />
 
