@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Pokemon from "./components/Pokemon/Pokemon";
 import { Howl, Howler } from "howler";
+import gsap from "gsap";
+
+// gsap.registerPlugin(TextPlugin);
 
 const dexLoad = new Howl({
   src: ["./src/assets/sounds/SFX_DEX_PAGE_ADDED.wav"],
@@ -42,6 +45,7 @@ const typeSound = new Howl({
 
 const JSON = () => {
   const [apiJson, setApiJson] = useState({});
+  const [flavorJson, setFlavorJson] = useState({});
   const [dexEntry, setDexEntry] = useState("");
   const [submit, setSubmit] = useState(false);
   const [randomSubmit, setRandomSubmit] = useState(false);
@@ -66,30 +70,11 @@ const JSON = () => {
       return null;
     } else {
       getJSON();
-      // dexLoad.play();
+      dexLoad.play();
     }
   }, [submit]);
   // console.log(apiJson.data);
 
-  useEffect(() => {
-    const getFlavorJSON = async () => {
-      const jsonFlavorData = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon-species/${dexEntry
-          .trim()
-          .toLowerCase()}`
-      );
-
-      // console.log(jsonFlavorData.data);
-      setApiJson(jsonFlavorData.data);
-    };
-    if (dexEntry.trim() === "") {
-      return null;
-    } else {
-      getFlavorJSON();
-      // dexLoad.play();
-    }
-    console.log(jsonFlavorData.data);
-  }, [submit]);
   // const jsonFlavor = await axios.get(
   //   `https://pokeapi.co/api/v2/pokemon-species/${searchDefaults(dexEntry)}`
   // );
@@ -103,22 +88,49 @@ const JSON = () => {
   }
   useEffect(() => {
     const getJSON = async () => {
-      const jsonData = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${getRandom()}`
-      );
-      console.log(randomSubmit);
-      console.log(jsonData.data);
-      setApiJson(jsonData.data);
+      await axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${getRandom()}`)
+        .then(async (firstRes) => {
+          await axios
+            .get(
+              `https://pokeapi.co/api/v2/pokemon-species/${firstRes.data.name
+                .trim()
+                .toLowerCase()}`
+            )
+            .then((secondRes) => {
+              setApiJson(firstRes.data);
+              setFlavorJson(secondRes.data);
+            });
+
+          console.log(apiJson);
+          console.log(flavorJson);
+        });
     };
+
     if (randomSubmit === false) {
       return null;
     } else if (dexEntry !== "" && randomSubmit === true) {
-      getJSON();
+      setApiJson(getJSON());
     } else {
       getJSON();
     }
   }, [randomSubmit]);
   // brings up random entry on startup, hard-refresh - might also be slowing my internet down. Not sure yet.
+
+  useEffect(() => {
+    gsap.from("#mainHeader", { opacity: 0, y: 10, text: " ", delimiter: " " });
+  }, [dexEntry]);
+
+  useEffect(() => {
+    gsap.timeline(
+      gsap.from("#mainScreen", {
+        delay: 1,
+        duration: 1,
+        opacity: 0,
+        ease: "rough",
+      })
+    );
+  }, [apiJson]);
 
   return (
     // onClick, useState, YES
@@ -155,9 +167,9 @@ const JSON = () => {
             type="button"
             className="checkBtn"
             id="FormeBtn"
-            // onClick={(e) => {
-            //   dexLoad.play(e);
-            // }}
+            onClick={(e) => {
+              dexLoad.play();
+            }}
           />
           <input type="button" className="checkBtn" id="ArtBtn" />
           <input type="button" className="checkBtn" id="check03" />
@@ -188,7 +200,10 @@ const JSON = () => {
             id="inputBar"
             type="text"
             name="search"
-            onChange={(e) => setDexEntry(e.target.value)}
+            onChange={(e) => {
+              console.log(e);
+              setDexEntry(e.target.value);
+            }}
           >
             {}
           </input>

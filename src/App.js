@@ -6,22 +6,22 @@ import JSON from "./pages/JSON/JSON";
 function App() {
   return (
     <Router>
-      <nav>
+      {/* <nav>
         <Link to="/">
           <p>Home</p>
         </Link>
         <Link to="/form">
           <p>Form</p>
         </Link>
-        {/* <Link to="/json">
+        <Link to="/json">
           <p>JSON</p>
-        </Link> */}
-      </nav>
+        </Link>
+      </nav> */}
       <div>
         <Routes>
           <Route path="/" element={<JSON />} />
-          <Route path="form" element={<Form />} />
-          <Route path="json" element={<JSON />} />
+          {/* <Route path="form" element={<Form />} />
+          <Route path="json" element={<JSON />} /> */}
         </Routes>
       </div>
     </Router>

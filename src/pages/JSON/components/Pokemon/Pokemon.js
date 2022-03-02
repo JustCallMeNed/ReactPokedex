@@ -1,11 +1,12 @@
+import { useEffect } from "react";
 import "./Pokemon.css";
 import Stats from "./Stats";
 import Abilities from "./Abilities";
 import Moves from "./Moves";
 import Evos from "./Evos";
+import gsap from "gsap";
 
 export function capFirst(foundPokemon) {
-  // console.log(foundPokemon.split("-"));
   // store "foundPokemon.split" as a variable, iterate over that variable
   let entries = foundPokemon.split("-");
   let cappedEntries = [];
@@ -15,8 +16,6 @@ export function capFirst(foundPokemon) {
   }
   return cappedEntries.join(" ");
   // capitalizes each word, returns joined array with the dash
-
-  // several iterator functions that can solve this problem - map() is not one of them
 }
 
 // export function joinWords() {
@@ -40,24 +39,29 @@ function hpCaps(entry) {
   return cappedEntry;
 }
 //^^^ Capitalizes "HP" when rendering stat names with loop
+
 const Pokemon = ({ foundPokemon }) => {
-  // console.log(foundPokemon);
   let { sprites, id, order, types, species, height, weight, forms } =
     foundPokemon;
   // NOTE: moves, stats, types, abilities are arrays of objects;
   // generate html tags with the selected data
 
-  //   let {base_stat, stat, name} = stats
-  // }
+  useEffect(() => {
+    gsap.timeline(
+      gsap.defaults({ delay: 0.5 }),
+      gsap.from("dataContainer", { opacity: 0, ease: "rough" })
+    );
+  }, []);
+
   let originalArtworkSource = sprites.other["official-artwork"].front_default;
-  // console.log("Original Art Src:" + " " + originalArtworkSource);
+
   return (
     <div id="dataContainer">
       <div id="spriteDisplay">
         <img id="mainArt" src={originalArtworkSource} />
         {/* <img id="mainArt" src={sprites.other.home.front_default} /> */}
         {/* <hr /> */}
-        {/* <input type="radio" onChange={}>Gender</input> */}
+        {/* Gender/Sex component goes here. Get your head out of the gutter. */}
         <div id="spriteArt">
           <img id="Default" src={sprites.front_default} />
 
