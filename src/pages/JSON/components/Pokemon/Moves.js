@@ -3,6 +3,20 @@ const Moves = ({ foundMoves }) => {
   let { order, moves, abilities } = foundMoves;
   // Sorting = processing data twice - once to sort, once to return
 
+  const sortMoves = () => {
+    moves.sort((a, b) =>
+      a.move_learn_method > b.move_learn_method
+        ? 1
+        : a.move_learn_method === "level-up" &&
+          b.move_learn_method === "level-up"
+        ? a.level_learned_at > b.level_learned_at
+          ? 1
+          : -1
+        : -1
+    );
+    return;
+  };
+
   // function filterMoves() {
   //   moves.filter(() => {
   //     let levelMoves = [];
@@ -62,18 +76,20 @@ const Moves = ({ foundMoves }) => {
   return (
     <div id="moveScreen">
       <div>
-        <h3 class="Moves">Moves</h3>
+        <h3 className="Moves">Moves</h3>
         {moves.length === 0 ? (
           <p id="errorMessage">
             Error: This Moves list is currently unavailable -- we apologize for
             the inconvenience.
           </p>
         ) : (
+          // sortMoves(
+          //appending sorting function to map results in moves list not rendering at all
           moves.map((moves, i) => {
             return (
               //dropdown menu to subdivide/organize moves by type (damaging/status, etc)
               <>
-                <p key={i} class="Moves" id={"Move" + i}>
+                <p key={i} className="Moves" id={"Move" + i}>
                   {capFirst(moves.move.name)}
                   {" - "}
                   {moves.version_group_details[0].level_learned_at === 0
@@ -85,6 +101,7 @@ const Moves = ({ foundMoves }) => {
               </>
             );
           })
+          // )
         )}
       </div>
     </div>

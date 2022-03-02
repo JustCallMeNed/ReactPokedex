@@ -47,21 +47,24 @@
 }
 
 #Border {
+  scale: 70%;
   display: flex;
   position: absolute;
+  place-self: center;
+  justify-content: center;
   transform: translate(50%);
-  top: 10%;
+  /* top: 10%; */
   right: 50%;
+  /* margin: 3em; */
   height: fit-content;
   width: fit-content;
-  justify-content: center;
   padding: 1.5em;
   background-image: radial-gradient(
     rgb(51, 69, 70),
     rgb(72, 139, 141),
     rgb(123, 201, 204)
   );
-  border: solid 3px black;
+  border: outset 3px black;
   border-radius: 2em;
   box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.5);
 }
@@ -72,7 +75,7 @@
   flex-flow: column wrap;
   justify-self: center;
   justify-content: center;
-  border: solid rgb(44, 75, 77) 1em;
+  border: inset rgb(70, 119, 122) 1em;
   background-image: linear-gradient(
     33deg,
     rgb(212, 240, 241),
@@ -111,7 +114,7 @@
 #speaker {
   height: fit-content;
   width: 6em;
-  border: solid rgb(44, 75, 77) 0.3em;
+  border: outset rgb(44, 75, 77) 0.3em;
   border-radius: 0.5em;
   margin: 0.5em;
   background-image: linear-gradient(
@@ -205,7 +208,7 @@ input {
     rgb(188, 242, 255),
     rgb(92, 250, 255)
   );
-  animation: fade 0.5s steps(20, end);
+  /* animation: fade 0.5s steps(20, end); */
 }
 
 /* #searchLabel {

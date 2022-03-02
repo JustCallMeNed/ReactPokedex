@@ -1,11 +1,12 @@
+import { useEffect } from "react";
 import "./Pokemon.css";
 import Stats from "./Stats";
 import Abilities from "./Abilities";
 import Moves from "./Moves";
 import Evos from "./Evos";
+import gsap from "gsap";
 
 export function capFirst(foundPokemon) {
-  // console.log(foundPokemon.split("-"));
   // store "foundPokemon.split" as a variable, iterate over that variable
   let entries = foundPokemon.split("-");
   let cappedEntries = [];
@@ -15,8 +16,6 @@ export function capFirst(foundPokemon) {
   }
   return cappedEntries.join(" ");
   // capitalizes each word, returns joined array with the dash
-
-  // several iterator functions that can solve this problem - map() is not one of them
 }
 
 // export function joinWords() {
@@ -41,15 +40,21 @@ function hpCaps(entry) {
 }
 //^^^ Capitalizes "HP" when rendering stat names with loop
 
-// function funnyNames
-
 const Pokemon = ({ foundPokemon }) => {
   let { sprites, id, order, types, species, height, weight, forms } =
     foundPokemon;
   // NOTE: moves, stats, types, abilities are arrays of objects;
   // generate html tags with the selected data
 
+  useEffect(() => {
+    gsap.timeline(
+      gsap.defaults({ delay: 0.5 }),
+      gsap.from("dataContainer", { opacity: 0, ease: "rough" })
+    );
+  }, []);
+
   let originalArtworkSource = sprites.other["official-artwork"].front_default;
+
   return (
     <div id="dataContainer">
       <div id="spriteDisplay">
