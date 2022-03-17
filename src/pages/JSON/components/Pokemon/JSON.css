@@ -275,17 +275,16 @@ input {
     /* margin: unset; */
     place-self: center;
   }
-  #App {
-    /* transform: unset; */
-    /* right: unset; */
-  }
-  #dexSideBoard {
-    height: auto;
-    padding-top: 0.75em;
-    padding-bottom: 0.2em;
-    align-items: center;
-  }
-  #dexBody {
-    height: 95%;
-  }
+  /* #App { */
+  /* transform: unset; */
+  /* right: unset; */
+}
+#dexSideBoard {
+  height: auto;
+  padding-top: 0.75em;
+  padding-bottom: 0.2em;
+  align-items: center;
+}
+#dexBody {
+  height: 95%;
 }
