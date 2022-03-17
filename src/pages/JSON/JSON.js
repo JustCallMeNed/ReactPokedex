@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Pokemon from "./components/Pokemon/Pokemon";
-import { Howl, Howler } from "howler";
+// import { Howl, Howler } from "howler";
 import gsap from "gsap";
 
 // gsap.registerPlugin(TextPlugin);
 
-const dexLoad = new Howl({
-  src: ["./src/assets/sounds/SFX_DEX_PAGE_ADDED.wav"],
-  volume: 0.8,
-});
+// const dexLoad = new Howl({
+//   src: ["./src/assets/sounds/SFX_DEX_PAGE_ADDED.wav"],
+//   volume: 0.8,
+// });
 
-const typeSound = new Howl({
-  srs: ["./src/assets/sounds/SFX_PRESS_AB.wav"],
-  volume: 0.8,
-});
+// const typeSound = new Howl({
+//   srs: ["./src/assets/sounds/SFX_PRESS_AB.wav"],
+//   volume: 0.8,
+// });
 
 // function searchDefaults(dexEntry) {
 //   let detail = dexEntry;
@@ -54,6 +54,10 @@ const JSON = () => {
   // const [region, setRegion] = useState();
   // const [mega, setMega] = useState(false);
   // const [dyna, setDyna] = useState(false);
+
+  if (typeof Storage === "undefined") {
+    console.log(window.localStorage);
+  }
 
   // VVV API CALL "SEARCH" BAR
   useEffect(() => {
@@ -100,6 +104,8 @@ const JSON = () => {
             .then((secondRes) => {
               setApiJson(firstRes.data);
               setFlavorJson(secondRes.data);
+              localStorage.setItem("name", apiJson.stringify(species.name));
+              localStorage.setItem("name", flavorJson.stringify(name));
             });
 
           console.log(apiJson);

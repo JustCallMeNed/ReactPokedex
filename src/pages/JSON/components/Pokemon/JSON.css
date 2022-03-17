@@ -46,6 +46,17 @@
   }
 }
 
+/* body {
+  display: flex;
+  flex-flow: column reverse;
+  place-content: center;
+  text-align: center;
+} */
+
+#root {
+  place-content: center;
+}
+
 #Border {
   scale: 70%;
   display: flex;
@@ -246,4 +257,35 @@ input {
     rgb(255, 188, 188, 0.5),
     rgb(255, 92, 92, 0.35)
   );
+}
+
+@media screen and (max-width: 600px) {
+  #root {
+    width: auto;
+    /* height: auto; */
+  }
+  #Border {
+    width: 100%;
+    height: 100%;
+    /* position: unset; */
+    transform: translateX(71.5%) translateY(-40%) scale(80%);
+    padding: unset;
+    /* border: unset; */
+    /* right: unset; */
+    /* margin: unset; */
+    place-self: center;
+  }
+  #App {
+    /* transform: unset; */
+    /* right: unset; */
+  }
+  #dexSideBoard {
+    height: auto;
+    padding-top: 0.75em;
+    padding-bottom: 0.2em;
+    align-items: center;
+  }
+  #dexBody {
+    height: 95%;
+  }
 }
